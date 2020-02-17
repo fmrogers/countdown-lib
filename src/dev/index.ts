@@ -1,5 +1,14 @@
-import CountDown from '../index';
+import Countdown from '../countdown';
 
-const example = new CountDown('9999-12-31');
+const example = new Countdown();
 
-console.log('Example', example);
+example.setEndDate('2020-02-17 21:23:00');
+
+console.log(example.getEndDate());
+
+example.startCounting((remainder, isComplete) => {
+  console.log('Remainder: ', remainder);
+  if (isComplete) {
+    console.log('the countdown is complete');
+  }
+});
