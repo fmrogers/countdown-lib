@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib",
   "scripts": {
-    "build": "webpack src/index.ts -o lib/index.js --mode production",
+    "build": "webpack src/countdown.ts -o lib/index.js --mode production",
     "start": "webpack-dev-server --open"
   },
   "repository": {

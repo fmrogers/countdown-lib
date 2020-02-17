@@ -6,13 +6,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    index: './src/dev/index.ts',
+    dev: './src/dev/index.ts',
   },
   devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Count Down lib',
+      title: 'Countdown lib',
     }),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(nb)$/),
   ],
