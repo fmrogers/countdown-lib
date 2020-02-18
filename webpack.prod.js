@@ -1,21 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
-    dev: './src/dev/index.ts',
+    countdown: './src/countdown.ts',
   },
   devtool: 'inline-source-map',
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Countdown lib',
-    }),
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(nb)$/),
-  ],
+  plugins: [new CleanWebpackPlugin(), new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(nb)$/)],
   module: {
     rules: [
       {
