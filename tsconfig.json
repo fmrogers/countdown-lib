@@ -4,11 +4,12 @@
     "strict": true,
     "target": "es5",
     "module": "commonjs",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "lib", "src/dev"]
+  "exclude": ["node_modules", "lib", "dev"]
 }
