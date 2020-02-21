@@ -14,7 +14,7 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: ['/node_modules/', '/src/dev/'],
+        exclude: ['/node_modules/', '/src/init-test.ts'],
       },
     ],
   },
