@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export interface unitsOfTime {
   [key: string]: number;
   secondsInDay: number;
@@ -41,11 +39,11 @@ export default class Countdown {
   private increment: number = 1000;
 
   public setEndDate(endDate: string) {
-    this.endDateTimeStamp = this.unixTimeStamp(endDate);
+    this.endDateTimeStamp = Math.trunc(Date.parse(endDate));
   }
 
   public getEndDate() {
-    return moment(this.endDateTimeStamp).format('MMMM Do YYYY, h:mm:ss');
+    return new Date(this.endDateTimeStamp).toLocaleString('nb-NO');
   }
 
   public startCounting(callback: (remainder: timeRemaining, isComplete: boolean) => void) {
@@ -80,12 +78,8 @@ export default class Countdown {
     return true;
   }
 
-  private unixTimeStamp(date?: string): number {
-    return moment(date).unix() * 1000;
-  }
-
   private calculateTimeRemaining(): timeRemaining {
-    this.currentDateTimeStamp = this.unixTimeStamp();
+    this.currentDateTimeStamp = Math.trunc(Date.now());
     const { secondsInDay, daysOfYear, secondsInHour, secondsInMinute } = this.unitsOfTime;
     let distance: number = (this.endDateTimeStamp - this.currentDateTimeStamp) / this.increment;
 
@@ -115,7 +109,7 @@ export default class Countdown {
         distance -= this.timeRemaining.minutes * secondsInMinute;
       }
       // Seconds left
-      this.timeRemaining.seconds = distance;
+      this.timeRemaining.seconds = Math.floor(distance);
     }
 
     return this.timeRemaining;
