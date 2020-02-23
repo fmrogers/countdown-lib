@@ -8,8 +8,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server"
+    "minify": "jsmin -o lib/index.min.js lib/index.js",
+    "build": "tsc && npm run minify"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/fmrogers/countdown-lib#readme",
   "devDependencies": {
+    "jsmin": "^1.0.1",
     "tslint": "^6.0.0",
     "typescript": "^3.7.5"
   },
