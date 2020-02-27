@@ -1,5 +1,4 @@
 export interface unitsOfTime {
-  [key: string]: number;
   secondsInDay: number;
   daysOfYear: number;
   secondsInHour: number;
@@ -7,16 +6,16 @@ export interface unitsOfTime {
 }
 
 export interface timeRemaining {
-  [key: string]: number;
   years: number;
   days: number;
   hours: number;
   minutes: number;
   seconds: number;
+  [index: string]: number;
 }
 
-export default class Countdown {
-  private timeRemaining: timeRemaining = {
+class FinalCountDown {
+  public timeRemaining: timeRemaining = {
     years: 0,
     days: 0,
     hours: 0,
@@ -24,7 +23,7 @@ export default class Countdown {
     seconds: 0,
   };
 
-  private isComplete: boolean = false;
+  public isComplete: boolean = false;
 
   private unitsOfTime: unitsOfTime = {
     secondsInDay: 86400,
@@ -34,16 +33,12 @@ export default class Countdown {
   };
 
   private currentDateTimeStamp: number = 0;
-  private endDateTimeStamp: number = 0;
+  private endDateTimeStamp = 0;
   private interval: number = 0;
   private increment: number = 1000;
 
-  public setEndDate(endDate: string) {
+  constructor(endDate: string) {
     this.endDateTimeStamp = Date.parse(endDate);
-  }
-
-  public getEndDate() {
-    return new Date(this.endDateTimeStamp).toLocaleString('nb-NO');
   }
 
   public startCounting(callback: (remainder: timeRemaining, isComplete: boolean) => void) {
@@ -51,7 +46,7 @@ export default class Countdown {
       const remainder = this.calculateTimeRemaining();
       this.isZeroHour(remainder) && this.stopInterval(this.interval);
       callback(remainder, this.isComplete);
-    }, this.increment);
+    }, 1000);
   }
 
   public stopInterval(interval: number) {
@@ -81,32 +76,32 @@ export default class Countdown {
   private calculateTimeRemaining(): timeRemaining {
     this.currentDateTimeStamp = Date.now();
     const { secondsInDay, daysOfYear, secondsInHour, secondsInMinute } = this.unitsOfTime;
-    let distance: number = (this.endDateTimeStamp - this.currentDateTimeStamp) / 1000;
-
+    let distance: number = Math.floor((this.endDateTimeStamp - this.currentDateTimeStamp) / this.increment);
+    console.log(distance);
     if (distance >= 0) {
       // Years left
       if (distance >= daysOfYear * secondsInDay) {
-        // 365.25 * 24 * 60 * 60
+        // >= 356.25 * 86400
         this.timeRemaining.years = Math.floor(distance / (daysOfYear * secondsInDay));
         distance -= this.timeRemaining.years * daysOfYear * secondsInDay;
       }
       // Days left
       if (distance >= secondsInDay) {
-        // 24 * 60 * 60
+        // >= 86400
         this.timeRemaining.days = Math.floor(distance / secondsInDay);
         distance -= this.timeRemaining.days * secondsInDay;
       }
       // Hours left
       if (distance >= secondsInHour) {
-        // 60 * 60
+        // >= 3600
         this.timeRemaining.hours = Math.floor(distance / secondsInHour);
         distance -= this.timeRemaining.hours * secondsInHour;
       }
       // Minutes left
-      if (distance >= secondsInMinute) {
-        // 60
-        this.timeRemaining.minutes = Math.floor(distance / secondsInMinute);
-        distance -= this.timeRemaining.minutes * secondsInMinute;
+      if (distance >= 60) {
+        // >= 60
+        this.timeRemaining.minutes = Math.floor(distance / 60);
+        distance -= this.timeRemaining.minutes * 60;
       }
       // Seconds left
       this.timeRemaining.seconds = Math.floor(distance);
@@ -115,3 +110,5 @@ export default class Countdown {
     return this.timeRemaining;
   }
 }
+
+export default FinalCountDown;
