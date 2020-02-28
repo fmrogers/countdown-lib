@@ -1,21 +1,14 @@
-export interface unitsOfTime {
-  secondsInDay: number;
-  daysOfYear: number;
-  secondsInHour: number;
-  secondsInMinute: number;
-}
-
-export interface timeRemaining {
+export interface TimeRemaining {
+  [index: string]: number;
   years: number;
   days: number;
   hours: number;
   minutes: number;
   seconds: number;
-  [index: string]: number;
 }
 
-class FinalCountDown {
-  public timeRemaining: timeRemaining = {
+export default class Countdown {
+  private timeRemaining: TimeRemaining = {
     years: 0,
     days: 0,
     hours: 0,
@@ -23,92 +16,73 @@ class FinalCountDown {
     seconds: 0,
   };
 
-  public isComplete: boolean = false;
-
-  private unitsOfTime: unitsOfTime = {
-    secondsInDay: 86400,
-    daysOfYear: 365.25,
-    secondsInHour: 3600,
-    secondsInMinute: 60,
-  };
-
-  private currentDateTimeStamp: number = 0;
+  private currentDateTimeStamp = 0;
   private endDateTimeStamp = 0;
-  private interval: number = 0;
-  private increment: number = 1000;
+  private interval = 0;
+  private timeout = 1000;
+  private difference = 0;
 
-  constructor(endDate: string) {
-    this.endDateTimeStamp = Date.parse(endDate);
+  constructor(endDate?: string) {
+    this.endDateTimeStamp = endDate ? Date.parse(endDate) : 0;
   }
 
-  public startCounting(callback: (remainder: timeRemaining, isComplete: boolean) => void) {
-    this.interval = window.setInterval(() => {
-      const remainder = this.calculateTimeRemaining();
+  public startInterval(): void {
+    //console.log("Zero Hour: ", this.isZeroHour(this.timeRemaining));
+
+    this.interval = setInterval(() => {
+      const remainder = this.calculateCountDown();
+      console.log(remainder);
       this.isZeroHour(remainder) && this.stopInterval(this.interval);
-      callback(remainder, this.isComplete);
-    }, 1000);
+    }, this.timeout);
   }
 
-  public stopInterval(interval: number) {
-    interval && clearInterval(interval);
-    this.isComplete = true;
+  private stopInterval(interval: number): void {
+    clearInterval(interval);
   }
 
-  public addLeadingZeros(value: number): string {
-    let stringValue: string = value.toString();
-    const two: number = 2;
-    if (stringValue.length < two) {
-      stringValue = `0${value}`;
-    }
-    return stringValue;
-  }
-
-  private isZeroHour(remainder: timeRemaining): boolean {
+  public isZeroHour(remainder: TimeRemaining) {
     const remainingValues = Object.keys(remainder).map((key) => remainder[key]);
-    const hasMoreTime = remainingValues.reduce((accumulator, currentValue) => accumulator + currentValue);
-
-    if (hasMoreTime) {
-      return false;
-    }
-    return true;
+    const isZero = remainingValues.reduce((accumulator, currentValue) => accumulator + currentValue);
+    return isZero === 0 ? true : false;
   }
 
-  private calculateTimeRemaining(): timeRemaining {
-    this.currentDateTimeStamp = Date.now();
-    const { secondsInDay, daysOfYear, secondsInHour, secondsInMinute } = this.unitsOfTime;
-    let distance: number = Math.floor((this.endDateTimeStamp - this.currentDateTimeStamp) / this.increment);
-    console.log(distance);
-    if (distance >= 0) {
-      // Years left
-      if (distance >= daysOfYear * secondsInDay) {
-        // >= 356.25 * 86400
-        this.timeRemaining.years = Math.floor(distance / (daysOfYear * secondsInDay));
-        distance -= this.timeRemaining.years * daysOfYear * secondsInDay;
+  private calculateCountDown(): TimeRemaining {
+    this.currentDateTimeStamp = Date.parse(String(new Date()));
+    this.difference = Math.floor((this.endDateTimeStamp - this.currentDateTimeStamp) / 1000);
+    console.log('Difference: ', this.difference);
+
+    if (this.difference > 0) {
+      if (this.difference >= 365.25 * 86400) {
+        // 365.25 * 24 * 60 * 60
+        this.timeRemaining.years = Math.floor(this.difference / (365.25 * 86400));
+        this.difference -= this.timeRemaining.years * 365.25 * 86400;
       }
-      // Days left
-      if (distance >= secondsInDay) {
-        // >= 86400
-        this.timeRemaining.days = Math.floor(distance / secondsInDay);
-        distance -= this.timeRemaining.days * secondsInDay;
+
+      if (this.difference >= 86400) {
+        // 24 * 60 * 60
+        this.timeRemaining.days >= Math.floor(this.difference / 86400);
+        this.difference -= this.timeRemaining.days * 86400;
       }
-      // Hours left
-      if (distance >= secondsInHour) {
-        // >= 3600
-        this.timeRemaining.hours = Math.floor(distance / secondsInHour);
-        distance -= this.timeRemaining.hours * secondsInHour;
+
+      if (this.difference >= 3600) {
+        // 60 * 60
+        this.timeRemaining.hours >= Math.floor(this.difference / 3600);
+        this.difference -= this.timeRemaining.hours * 36000;
       }
-      // Minutes left
-      if (distance >= 60) {
-        // >= 60
-        this.timeRemaining.minutes = Math.floor(distance / 60);
-        distance -= this.timeRemaining.minutes * 60;
+
+      if (this.difference >= 60) {
+        // 60
+        this.timeRemaining.minutes = Math.floor(this.difference / 60);
+        this.difference -= this.timeRemaining.minutes * 60;
       }
-      // Seconds left
-      this.timeRemaining.seconds = Math.floor(distance);
+
+      //if (this.difference  60) {
+      this.timeRemaining.seconds = this.difference ? this.difference : 0;
+      //} else {
+      //this.timeRemaining.seconds = 0;
+      //}
     }
 
     return this.timeRemaining;
   }
 }
-
-export default FinalCountDown;
