@@ -7,19 +7,18 @@ export interface TimeRemaining {
 }
 
 export default class Countdown {
-  private timeRemaining: TimeRemaining = {
+  public timeRemaining: TimeRemaining = {
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   };
-
+  public interval = 0;
+  public isComplete = false;
   private currentDateTimeStamp = 0;
   private endDateTimeStamp = 0;
-  private interval = 0;
   private timeout = 1000;
   private difference = 0;
-  private isComplete = false;
 
   constructor(endDate?: string) {
     this.endDateTimeStamp = endDate ? Date.parse(endDate) : 0;
@@ -27,9 +26,9 @@ export default class Countdown {
 
   public startCounter(callback: (remainder: TimeRemaining, isComplete: boolean) => void): void {
     this.interval = setInterval(() => {
-      const remainder = this.calculateCountDown();
-      this.isZeroHour(remainder) && this.stopCounter(this.interval);
-      callback(remainder, this.isComplete);
+      this.timeRemaining = this.calculateCountDown();
+      this.isZeroHour(this.timeRemaining);
+      callback(this.timeRemaining, this.isComplete);
     }, this.timeout);
   }
 
@@ -41,15 +40,15 @@ export default class Countdown {
     return stringValue;
   }
 
-  private stopCounter(interval: number): void {
+  public stopCounter(interval: number): void {
     clearInterval(interval);
     this.isComplete = true;
   }
 
-  private isZeroHour(remainder: TimeRemaining) {
+  public isZeroHour(remainder: TimeRemaining) {
     const remainingValues = Object.keys(remainder).map((key) => remainder[key]);
     const isZero = remainingValues.reduce((accumulator, currentValue) => accumulator + currentValue);
-    return isZero === 0 ? true : false;
+    return isZero === 0 ? (this.isComplete = true) : (this.isComplete = false);
   }
 
   private calculateCountDown(): TimeRemaining {
