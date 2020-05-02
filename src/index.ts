@@ -33,10 +33,12 @@ export default class Countdown {
   }
 
   public addLeadingZeros(value: number): string {
-    let stringValue = value.toString();
+    let stringValue = String(value);
     if (stringValue.length < 2) {
-      stringValue = `0${value}`;
+      stringValue = `0${stringValue}`;
     }
+    //console.log(stringValue.length === 1);
+    console.log(stringValue);
     return stringValue;
   }
 
