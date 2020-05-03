@@ -37,8 +37,6 @@ export default class Countdown {
     if (stringValue.length < 2) {
       stringValue = `0${stringValue}`;
     }
-    //console.log(stringValue.length === 1);
-    console.log(stringValue);
     return stringValue;
   }
 
