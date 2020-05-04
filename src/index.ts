@@ -20,8 +20,8 @@ export default class Countdown {
   private timeout = 1000;
   private difference = 0;
 
-  constructor(endDate?: string) {
-    this.endDateTimeStamp = endDate ? Date.parse(endDate) : 0;
+  constructor(endDate?: Date) {
+    this.endDateTimeStamp = endDate ? endDate.getTime() : 0;
   }
 
   public startCounter(callback: (remainder: TimeRemaining, isComplete: boolean) => void): void {
