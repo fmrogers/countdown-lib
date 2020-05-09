@@ -1,6 +1,6 @@
 {
   "name": "countdown-lib",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Simple countdown library that counts down to a spcified date and accepts a callback for execution once the countdown is complete.",
   "main": "lib/index.js",
   "types": "lib",
