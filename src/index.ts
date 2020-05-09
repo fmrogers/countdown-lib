@@ -13,12 +13,12 @@ export default class Countdown {
     minutes: 0,
     seconds: 0,
   };
-  public interval = 0;
-  public isComplete = false;
-  private currentDateTimeStamp = 0;
-  private endDateTimeStamp = 0;
-  private timeout = 1000;
-  private difference = 0;
+  public interval: number = 0;
+  public isComplete: boolean = false;
+  private currentDateTimeStamp: number = 0;
+  private endDateTimeStamp: number = 0;
+  private timeout: number = 1000;
+  private difference: number = 0;
 
   constructor(endDate?: Date) {
     this.endDateTimeStamp = endDate ? endDate.getTime() : 0;
