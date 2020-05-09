@@ -1,6 +1,6 @@
 # Countdown Lib
 
-Countdown lib aims to simplify the presentation of counting down time by providing the core functionality needed as well as a few usefull helper methods. The library is a personal project written in TypeScript and made to be used with React/TypeScript. It should work with other libraries like Angular or Vue.
+Countdown lib aims to simplify the presentation of counting down time by providing the core functionality needed as well as a few usefull helper methods. The library is a personal project written in TypeScript and made to be used with React/TypeScript. However it should work with other libraries like Angular or Vue.
 
 ## Important Information
 
@@ -36,16 +36,14 @@ Import the class and types before initilizing a ner isntance.
 
 ## Available Properties
 
-- `timeRemaining: TimeRemaining` Initializes a default object literal with properties for `days`, `hours`, `minutes` and `seconds`, all staring at zero.
+- `timeRemaining: TimeRemaining` Initializes a default object literal with properties for `days`, `hours`, `minutes` and `seconds`, all starting at zero.
 - `interval: number` contains the `setInterval()` function. And is stored as it's own property to allow for clearing the interval.
-- `isComplete: boolean` Is set to true when coundown has reached zero.
+- `isComplete: boolean` Is set to `true` when coundown has reached zero.
 
 <br />
 <br />
 
-## Example
-
-Usage with a React and TypeScript project.
+## React/TypeScript Example.
 
 ```javascript
 const App = () => {
