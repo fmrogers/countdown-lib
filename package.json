@@ -22,9 +22,8 @@
   },
   "homepage": "https://github.com/fmrogers/countdown-lib#readme",
   "devDependencies": {
+    "eslint": "^7.26.0",
     "jsmin": "^1.0.1",
-    "tslint": "^6.0.0",
-    "typescript": "^3.7.5"
-  },
-  "dependencies": {}
+    "typescript": "^4.2.4"
+  }
 }
