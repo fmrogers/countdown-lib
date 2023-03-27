@@ -2,7 +2,7 @@ import { Countdown } from "./main";
 
 const appContainer = document.getElementById("app");
 
-const countdown = new Countdown(new Date(2023, 2, 27, 21, 30));
+const countdown = new Countdown(new Date(2023, 5, 1, 17));
 
 countdown.startCounter((remainder, isComplete) => {
   if (appContainer) {
