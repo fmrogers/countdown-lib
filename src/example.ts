@@ -1,8 +1,8 @@
-import { Countdown, RemainingTimeType } from "./index";
+import { Countdown } from "./index";
 
 const appContainer = document.getElementById("app");
 
-const countdown = new Countdown("2023-03-27 21:24:00");
+const countdown = new Countdown(new Date(2023, 2, 27, 21, 30));
 
 countdown.startCounter((remainder, isComplete) => {
   if (appContainer) {

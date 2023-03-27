@@ -9,8 +9,8 @@ export class Countdown {
   public counter: number | null;
   public isComplete: boolean = false;
 
-  constructor(endDate: string) {
-    this.endDate = new Date(endDate.replace(/ /g, "T"));
+  constructor(endDate: Date) {
+    this.endDate = endDate;
     this.timeRemaining = new RemainderModel();
     this.calculator = new Calculater(this.endDate);
     this.counter = null;
