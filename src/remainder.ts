@@ -13,7 +13,7 @@ export class RemainderModel {
   private seconds: number = 0;
 
   private errorHandler(
-    type: 'days' | 'hours' | 'minutes' | 'seconds',
+    type: "days" | "hours" | "minutes" | "seconds",
     max: number
   ): Error {
     const capitalizedType = type.charAt(0).toLocaleUpperCase() + type.slice(1);
@@ -23,8 +23,8 @@ export class RemainderModel {
   }
 
   public setDays(remainingDays: number) {
-    if (remainingDays < 0 || remainingDays > 31) {
-      this.errorHandler('days', 31);
+    if (remainingDays < 0) {
+      this.errorHandler("days", 31);
     }
 
     this.days = remainingDays;
@@ -32,7 +32,7 @@ export class RemainderModel {
 
   public setHours(remainingHours: number) {
     if (remainingHours < 0 || remainingHours > 24) {
-      this.errorHandler('days', 24);
+      this.errorHandler("days", 24);
     }
 
     this.hours = remainingHours;
@@ -40,7 +40,7 @@ export class RemainderModel {
 
   public setMinutes(remainingMinutes: number) {
     if (remainingMinutes < 0 || remainingMinutes > 60) {
-      this.errorHandler('minutes', 60);
+      this.errorHandler("minutes", 60);
     }
 
     this.minutes = remainingMinutes;
@@ -48,7 +48,7 @@ export class RemainderModel {
 
   public setSeconds(remainingSeconds: number) {
     if (remainingSeconds < 0 || remainingSeconds > 60) {
-      this.errorHandler('seconds', 60);
+      this.errorHandler("seconds", 60);
     }
 
     this.seconds = remainingSeconds;
