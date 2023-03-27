@@ -1,16 +1,16 @@
-import { RemainderModel, RemainingTimeType } from './remainder';
-import { Calculater } from './calculator';
+import { RemainderModel, RemainingTimeType } from "./remainder";
+import { Calculater } from "./calculator";
 
 export class Countdown {
   private endDate: Date;
   private timeRemaining: RemainderModel;
   private calculator: Calculater;
 
-  public counter: NodeJS.Timer | null;
+  public counter: number | null;
   public isComplete: boolean = false;
 
   constructor(endDate: string) {
-    this.endDate = new Date(endDate.replace(/ /g, 'T'));
+    this.endDate = new Date(endDate.replace(/ /g, "T"));
     this.timeRemaining = new RemainderModel();
     this.calculator = new Calculater(this.endDate);
     this.counter = null;
@@ -28,7 +28,7 @@ export class Countdown {
   }
 
   private isZeroHour(remainder: RemainingTimeType) {
-    const remainingValues = Object.keys(remainder).map(key => remainder[key]);
+    const remainingValues = Object.keys(remainder).map((key) => remainder[key]);
     const isZero = remainingValues.reduce(
       (accumulator, currentValue) => accumulator + currentValue
     );
