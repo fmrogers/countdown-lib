@@ -1,8 +1,19 @@
 {
   "name": "countdown-lib",
+  "type": "module",
   "private": true,
   "version": "2.1.0",
-  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/countdown-lib.umd.cjs",
+  "module": "./dist/countdown-lib.js",
+  "exports": {
+    ".": {
+      "import": "./dist/countdown-lib.js",
+      "require": "./dist/countdown-lib.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

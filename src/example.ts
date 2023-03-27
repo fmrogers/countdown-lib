@@ -1,4 +1,4 @@
-import { Countdown } from "./index";
+import { Countdown } from "./main";
 
 const appContainer = document.getElementById("app");
 
