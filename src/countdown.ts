@@ -6,7 +6,7 @@ export class Countdown {
   private timeRemaining: RemainderModel;
   private calculator: Calculater;
 
-  public counter: number | null;
+  public counter: NodeJS.Timer | null;
   public isComplete: boolean = false;
 
   constructor(endDate: Date) {
