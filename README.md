@@ -15,8 +15,6 @@
 
 ## Table of Contents
 
----
-
 - [Features](#features)
 - [Installing](#installing)
 - [Examples](#examples)
