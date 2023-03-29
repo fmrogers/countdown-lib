@@ -104,6 +104,13 @@ export const CountdownExample: FC = () => {
 
 ## Countdown-lib API
 
+**Countdown()**
+
+```ts
+// Breaking change as of version 2.1.0, constructor must be initialised with a Date object.
+new Countdown(endDate: Date)
+```
+
 **countdown.startCounter(callback)**
 
 ```ts
