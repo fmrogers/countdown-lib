@@ -2,6 +2,14 @@
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+
+<p>
+  <a href="https://github.com/fmrogers/countdown-lib/issues/new">Report issue or request a feature</a>
+    ·
+  <a href="https://github.com/fmrogers/countdown-lib/pulls">Make a pull request</a>
+</p>
 
 <br /><br />
 
