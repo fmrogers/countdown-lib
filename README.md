@@ -11,7 +11,7 @@
   <a href="https://github.com/fmrogers/countdown-lib/pulls">Make a pull request</a>
 </p>
 
-<br /><br />
+<br />
 
 ## Table of Contents
 
@@ -23,11 +23,9 @@
 - [API](#countdown-lib-api)
 - [Types](#exposed-types)
 
-<br /><br />
+<br />
 
 ## Features
-
----
 
 - Written in TypeScript.
 - Can be used with any JS library or framework.
@@ -36,11 +34,9 @@
 - Return values include days, hours, minutes and seconds.
 - Optional methods of alternative implementations.
 
-<br /><br />
+<br />
 
 ## Installing
-
----
 
 ### Using npm:
 
@@ -48,11 +44,9 @@
 $ npm install countdown-lib
 ```
 
-<br /><br />
+<br />
 
 ## Examples
-
----
 
 ### Vanilla TypeScript
 
@@ -108,11 +102,9 @@ export const CountdownExample: FC = () => {
 };
 ```
 
-<br /><br />
+<br />
 
 ## Countdown-lib API
-
----
 
 **countdown.startCounter(callback)**
 
@@ -143,11 +135,9 @@ countdown.getRemainingTime(): RemainingTimeType
 countdown.addLeadingZero(value: number): string
 ```
 
-<br /><br />
+<br />
 
 ## Exposed Types
-
----
 
 ### RemainingTimeType
 
