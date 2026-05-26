@@ -15,6 +15,14 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmrogers/countdown-lib.git"
+  },
+  "homepage": "https://github.com/fmrogers/countdown-lib#readme",
+  "bugs": {
+    "url": "https://github.com/fmrogers/countdown-lib/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && tsc -p tsconfig.build.json",
